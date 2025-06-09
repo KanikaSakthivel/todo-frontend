@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { auth } from "./firebase";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 export default function App() {
-  console.log("✅ App component is rendering");
-  return (
-    <div style={{ padding: "2rem", border: "2px solid red" }}>
-      <h1>ToDo App Rendered!</h1>
-    </div>
-  );
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(setUser);
+    return () => unsubscribe();
+  }, []);
+
+  return user ? <Dashboard user={user} /> : <Login />;
 }
