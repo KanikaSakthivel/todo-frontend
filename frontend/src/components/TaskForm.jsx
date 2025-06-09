@@ -15,12 +15,12 @@ export default function TaskForm({ user }) {
     if (!formData.title) return alert("Title is required");
 
     try {
-      // Log the token to ensure it's correct
+      // Log the token to ensure it's being correctly retrieved
       const token = await user.getIdToken();
-      console.log("Firebase Token:", token);  // Verify the token
+      console.log("Firebase Token:", token);
 
       if (!token) {
-        alert("No token available. Please login again.");
+        alert("No token found. Please login again.");
         return;
       }
 
@@ -28,16 +28,15 @@ export default function TaskForm({ user }) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,  // Ensure token is sent properly
+          Authorization: `Bearer ${token}`,  // Correct token format
         },
         body: JSON.stringify(formData),
       });
 
       if (res.ok) {
         setFormData({ title: "", description: "", dueDate: "" });
-        window.location.reload();
+        window.location.reload(); // Refresh after successful task creation
       } else {
-        // Log the error status for debugging
         const errorData = await res.json();
         console.error("Error response:", errorData);
         alert("Failed to create task. Please try again.");
