@@ -1,8 +1,8 @@
 export default function App() {
+  console.log("✅ App component is rendering");
   return (
-    <div style={{ padding: "2rem", fontFamily: "Arial, sans-serif" }}>
-      <h1>ToDo App</h1>
-      <p>Google Sign-In and Task Manager is working!</p>
+    <div style={{ padding: "2rem" }}>
+      <h1>ToDo App Rendered!</h1>
     </div>
   );
 }
