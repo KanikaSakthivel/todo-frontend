@@ -14,21 +14,37 @@ export default function TaskForm({ user }) {
     e.preventDefault();
     if (!formData.title) return alert("Title is required");
 
-    const token = await user.getIdToken();
-    const res = await fetch("https://todo-backend-h1ha.onrender.com/api/tasks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(formData),
-    });
+    try {
+      // Log the token to ensure it's correct
+      const token = await user.getIdToken();
+      console.log("Firebase Token:", token);  // Verify the token
 
-    if (res.ok) {
-      setFormData({ title: "", description: "", dueDate: "" });
-      window.location.reload();
-    } else {
-      alert("Failed to create task");
+      if (!token) {
+        alert("No token available. Please login again.");
+        return;
+      }
+
+      const res = await fetch("https://todo-backend-h1ha.onrender.com/api/tasks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,  // Ensure token is sent properly
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setFormData({ title: "", description: "", dueDate: "" });
+        window.location.reload();
+      } else {
+        // Log the error status for debugging
+        const errorData = await res.json();
+        console.error("Error response:", errorData);
+        alert("Failed to create task. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error creating task:", error);
+      alert("An unexpected error occurred.");
     }
   };
 
