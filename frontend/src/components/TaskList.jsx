@@ -5,7 +5,7 @@ export default function TaskList({ user }) {
 
   const fetchTasks = async () => {
     const token = await user.getIdToken();
-    const res = await fetch("https://your-backend-url/api/tasks", {
+    const res = await fetch("https://todo-backend-h1ha.onrender.com/api/tasks", {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
@@ -18,7 +18,7 @@ export default function TaskList({ user }) {
 
   const updateTask = async (taskId, status) => {
     const token = await user.getIdToken();
-    await fetch(`https://your-backend-url/api/tasks/${taskId}`, {
+    await fetch(`https://todo-backend-h1ha.onrender.com/api/tasks/${taskId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export default function TaskList({ user }) {
 
   const deleteTask = async (taskId) => {
     const token = await user.getIdToken();
-    await fetch(`https://your-backend-url/api/tasks/${taskId}`, {
+    await fetch(`https://todo-backend-h1ha.onrender.com/api/tasks/${taskId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
