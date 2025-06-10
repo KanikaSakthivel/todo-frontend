@@ -1,7 +1,6 @@
 import React from "react";
 import { auth } from "../firebase";
-import TaskForm from "../components/TaskForm";
-import TaskList from "../components/TaskList";
+import ParentComponent from "../components/parentTask";
 
 export default function Dashboard({ user }) {
   return (
@@ -15,8 +14,7 @@ export default function Dashboard({ user }) {
           Logout
         </button>
       </div>
-      <TaskForm user={user} />
-      <TaskList user={user} />
+      <ParentComponent user={user} />
     </div>
   );
 }
