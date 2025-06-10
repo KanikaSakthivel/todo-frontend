@@ -11,7 +11,7 @@ export default function Login() {
       localStorage.setItem('firebase_token', token);  // Store token in localStorage for future API requests
 
       // After successful login, redirect the user to the Dashboard or another page
-      window.location.href = '/';  // Change to your dashboard route
+      //window.location.href = '/';  // Change to your dashboard route
     } catch (error) {
       console.error("Login failed:", error);
       alert(error.message);  // Show any login error
