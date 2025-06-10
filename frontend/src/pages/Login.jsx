@@ -1,3 +1,4 @@
+import React from "React";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../firebase";  // Import Firebase auth and provider
 
