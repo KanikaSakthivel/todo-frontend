@@ -28,7 +28,7 @@ export default function TaskList({ user }) {
       setTasks(data);
     } catch (error) {
       console.error("Error fetching tasks:", error);
-      alert(error);
+      alert("fro task list"+error);
     }
   };
 
