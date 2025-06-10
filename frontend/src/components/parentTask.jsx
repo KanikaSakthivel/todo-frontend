@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TaskList from "./TaskList";
 import TaskForm from "./TaskForm";
 
@@ -38,6 +38,10 @@ const ParentComponent = ({ user }) => {
   const addNewTask = (task) => {
     setTasks([...tasks, task]);
   };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   return (
     <div>
