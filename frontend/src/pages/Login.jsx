@@ -1,10 +1,20 @@
-import React from "react";
 import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "../firebase";
+import { auth, provider } from "../firebase";  // Import Firebase auth and provider
 
 export default function Login() {
-  const login = () => {
-    signInWithPopup(auth, provider).catch((err) => alert(err.message));
+  const login = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      const token = await user.getIdToken();  // Get Firebase ID token
+      localStorage.setItem('firebase_token', token);  // Store token in localStorage for future API requests
+
+      // After successful login, redirect the user to the Dashboard or another page
+      window.location.href = '/dashboard';  // Change to your dashboard route
+    } catch (error) {
+      console.error("Login failed:", error);
+      alert(error.message);  // Show any login error
+    }
   };
 
   return (
