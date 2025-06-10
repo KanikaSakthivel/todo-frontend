@@ -29,7 +29,7 @@ export default function TaskForm({ user }) {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,  // Correct token format
-        },Add commentMore actions
+        },
         body: JSON.stringify(formData),
         headers: { Authorization: `Bearer ${token}` },  // Ensure token is sent correctly
       });
