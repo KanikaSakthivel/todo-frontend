@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function TaskForm({ user }) {
+export default function TaskForm({ user, addNewTask }) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -15,7 +15,6 @@ export default function TaskForm({ user }) {
     if (!formData.title) return alert("Title is required");
 
     try {
-      // Log the token to ensure it's being correctly retrieved
       const token = await user.getIdToken();
       console.log("Firebase Token:", token);
 
@@ -23,19 +22,20 @@ export default function TaskForm({ user }) {
         alert("No token found. Please login again.");
         return;
       }
-                          
-       const res = await fetch("https://todo-backend-h1ha.onrender.com/api/tasks", {
+
+      const res = await fetch("https://todo-backend-h1ha.onrender.com/api/tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,  // Correct token format
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (res.ok) {
+        const newTask = await res.json();
+        addNewTask(newTask); // Call the function to add the new task
         setFormData({ title: "", description: "", dueDate: "" });
-        window.location.reload(); // Refresh after successful task creation
       } else {
         const errorData = await res.json();
         console.error("Error response:", errorData);
