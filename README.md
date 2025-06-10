@@ -3,7 +3,7 @@
 
 This project is a part of a hackathon run by [Katomaran](https://www.katomaran.com).
 ## Live preview
-https://todo-frontend-virid-rho.vercel.app/
+https://todo-frontend-virid-rho.vercel.app
 
 ## Project Overview
 
