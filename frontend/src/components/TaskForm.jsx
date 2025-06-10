@@ -23,14 +23,9 @@ export default function TaskForm({ user }) {
         alert("No token found. Please login again.");
         return;
       }
-
+                          
       const res = await fetch("https://todo-backend-h1ha.onrender.com/api/tasks", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,  // Correct token format
-        },
-        body: JSON.stringify(formData),
+        headers: { Authorization: `Bearer ${token}` },  // Ensure token is sent correctly
       });
 
       if (res.ok) {
