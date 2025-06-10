@@ -24,7 +24,13 @@ export default function TaskForm({ user }) {
         return;
       }
                           
-      const res = await fetch("https://todo-backend-h1ha.onrender.com/api/tasks", {
+       const res = await fetch("https://todo-backend-h1ha.onrender.com/api/tasks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,  // Correct token format
+        },Add commentMore actions
+        body: JSON.stringify(formData),
         headers: { Authorization: `Bearer ${token}` },  // Ensure token is sent correctly
       });
 
