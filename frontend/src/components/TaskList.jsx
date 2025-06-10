@@ -108,7 +108,7 @@ export default function TaskList({ user }) {
                   onClick={() =>
                     updateTask(
                       task._id,
-                      task.status === "Open" ? "Completed" : "Incomplete"
+                      task.status === "Open" ? "Complete" : "Open"
                     )
                   }
                   className={`px-3 py-1 text-white rounded ${
@@ -117,7 +117,7 @@ export default function TaskList({ user }) {
                       : "bg-green-500"
                   }`}
                 >
-                  {task.status}
+                  {task.status == "Open" ? "Incomplete" : "Completed"}
                 </button>
                 <button
                   onClick={() => deleteTask(task._id)}
