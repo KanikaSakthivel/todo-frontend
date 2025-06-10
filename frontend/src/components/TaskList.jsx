@@ -108,7 +108,7 @@ export default function TaskList({ user }) {
                   onClick={() =>
                     updateTask(
                       task._id,
-                      task.status === "Open" ? "Complete" : "Open"
+                      task.status === "Open" ? "Completed" : "Incomplete"
                     )
                   }
                   className={`px-3 py-1 text-white rounded ${
