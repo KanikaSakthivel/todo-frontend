@@ -30,8 +30,7 @@ export default function TaskForm({ user }) {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,  // Correct token format
         },
-        body: JSON.stringify(formData),
-        headers: { Authorization: `Bearer ${token}` },  // Ensure token is sent correctly
+        body: JSON.stringify(formData)
       });
 
       if (res.ok) {
